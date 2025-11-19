@@ -1,0 +1,5 @@
+{
+  "name": "TerraVision 360",
+  "description": "A specialized real estate visualization tool demonstrating 360-degree capabilities for land and lot sales, featuring boundary mapping, distance markers, and interactive hotspots.",
+  "requestFramePermissions": []
+}
