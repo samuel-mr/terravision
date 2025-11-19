@@ -2,55 +2,58 @@ import React from 'react';
 import { Line, Html } from '@react-three/drei';
 import * as THREE from 'three';
 
-// Define the shape of the lot (Trapezoid-ish on the ground)
-// Points are relative to center (0,0,0)
 const boundaryPoints = [
   new THREE.Vector3(-15, -5, -15),
   new THREE.Vector3(15, -5, -10),
   new THREE.Vector3(10, -5, 15),
   new THREE.Vector3(-10, -5, 12),
-  new THREE.Vector3(-15, -5, -15), // Close the loop
+  new THREE.Vector3(-15, -5, -15),
 ];
 
 export const BoundariesScene: React.FC = () => {
   return (
     <group>
-      {/* The Boundary Line */}
+      {/* Boundary Line - Warm Amber */}
       <Line
         points={boundaryPoints}
-        color="#facc15" // Yellow color
+        color="#d97706" 
         lineWidth={4}
         dashed={false}
       />
 
-      {/* Stakes at the corners */}
+      {/* Stakes - Wood/White style */}
       {boundaryPoints.slice(0, 4).map((point, idx) => (
         <mesh key={idx} position={point}>
           <cylinderGeometry args={[0.1, 0.1, 4, 8]} />
-          <meshStandardMaterial color="white" />
+          <meshStandardMaterial color="#f5f5f4" />
         </mesh>
       ))}
 
-      {/* Area Label floating in the center of the lot */}
+      {/* Area Label */}
       <Html position={[0, -2, 0]} center>
-        <div className="bg-yellow-500 text-black font-bold px-3 py-1 rounded shadow-lg border-2 border-white transform transition-transform hover:scale-110 cursor-default">
-          LOTE A-24
-          <div className="text-xs font-normal">450 m²</div>
+        <div className="bg-stone-800/90 text-white backdrop-blur-sm px-5 py-3 rounded-2xl shadow-xl border border-amber-500/50 flex flex-col items-center">
+          <span className="text-amber-400 text-xs font-bold uppercase tracking-wider mb-1">Lote Disponible</span>
+          <span className="text-2xl font-bold">LOTE A-24</span>
+          <span className="text-sm text-stone-300 font-normal">450.00 m²</span>
         </div>
       </Html>
 
-      {/* Side length labels (approximate midpoints) */}
-      <Html position={[-12.5, -4, -1.5]} center><div className="text-white font-bold text-sm drop-shadow-md bg-black/50 px-1 rounded">27m</div></Html>
-      <Html position={[12.5, -4, 2.5]} center><div className="text-white font-bold text-sm drop-shadow-md bg-black/50 px-1 rounded">25m</div></Html>
+      {/* Measurements */}
+      <Html position={[-12.5, -4, -1.5]} center>
+        <div className="text-stone-800 font-bold text-sm shadow-sm bg-white/90 px-2 py-1 rounded-md border border-stone-200">27m</div>
+      </Html>
+      <Html position={[12.5, -4, 2.5]} center>
+        <div className="text-stone-800 font-bold text-sm shadow-sm bg-white/90 px-2 py-1 rounded-md border border-stone-200">25m</div>
+      </Html>
       
-      {/* Surrounding "Sold" lots visualization */}
+      {/* Sold Neighbor */}
       <group position={[30, -5, 0]}>
          <mesh rotation={[-Math.PI / 2, 0, 0]}>
             <planeGeometry args={[20, 30]} />
-            <meshBasicMaterial color="red" opacity={0.3} transparent side={THREE.DoubleSide} />
+            <meshBasicMaterial color="#78716c" opacity={0.3} transparent side={THREE.DoubleSide} />
          </mesh>
          <Html position={[0, 2, 0]} center>
-            <div className="bg-red-600 text-white text-xs font-bold px-2 py-1 rounded opacity-80">VENDIDO</div>
+            <div className="bg-stone-600 text-white text-xs font-bold px-3 py-1 rounded-full opacity-90 tracking-wider">VENDIDO</div>
          </Html>
       </group>
     </group>

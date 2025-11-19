@@ -7,12 +7,11 @@ import { InteractiveScene } from './components/scenes/InteractiveScene';
 import { VirtualStagingScene } from './components/scenes/VirtualStagingScene';
 import { IconRuler, IconMapPin, IconInfo, Icon360, IconHome } from './components/Icons';
 
-// Placeholder images. In production, use real Equirectangular panoramas.
-// These URLs are random high-res nature images, they will distort at poles but work for demo logic.
-const IMG_BOUNDARIES = "https://picsum.photos/id/28/4000/2000"; // Forest/Field
-const IMG_PROXIMITY = "https://picsum.photos/id/48/4000/2000"; // Open landscape
-const IMG_INTERACTIVE = "https://picsum.photos/id/56/4000/2000"; // Fields
-const IMG_STAGING = "https://picsum.photos/id/15/4000/2000"; // Waterfall/Rocks (Needs flat ground ideally, but works for demo)
+// Placeholder images. 
+const IMG_BOUNDARIES = "https://picsum.photos/id/28/4000/2000"; 
+const IMG_PROXIMITY = "https://picsum.photos/id/48/4000/2000"; 
+const IMG_INTERACTIVE = "https://picsum.photos/id/56/4000/2000"; 
+const IMG_STAGING = "https://picsum.photos/id/15/4000/2000"; 
 
 const App: React.FC = () => {
   const [currentView, setCurrentView] = useState<ViewType>(ViewType.LANDING);
@@ -23,9 +22,9 @@ const App: React.FC = () => {
         return (
           <Viewer360
             imageUrl={IMG_BOUNDARIES}
-            title="Delimitación de Terreno"
-            description="Visualización exacta de los límites del lote con medidas y coordenadas. Ideal para mostrar la geometría real."
-            features={['Perímetro 3D', 'Medición de lados', 'Área total', 'Vecinos vendidos']}
+            title="Delimitación Natural"
+            description="Límites claros integrados con el entorno. Visualiza la extensión real de tu futuro hogar."
+            features={['Perímetro 3D', 'Medición de lados', 'Área total', 'Lotes Vecinos']}
             onBack={() => setCurrentView(ViewType.LANDING)}
           >
             <BoundariesScene />
@@ -35,9 +34,9 @@ const App: React.FC = () => {
         return (
           <Viewer360
             imageUrl={IMG_PROXIMITY}
-            title="Puntos de Interés"
-            description="Muestra la ubicación relativa de lugares importantes desde el punto de vista del terreno."
-            features={['Marcadores Flotantes', 'Distancias Reales', 'Iconografía', 'Radar de Ubicación']}
+            title="Entorno y Vida"
+            description="Conecta con lo que te rodea. Descubre la cercanía a la naturaleza y servicios esenciales."
+            features={['Puntos de Interés', 'Tiempo de Viaje', 'Vista Previa', 'Ubicación']}
             onBack={() => setCurrentView(ViewType.LANDING)}
           >
             <ProximityScene />
@@ -47,9 +46,9 @@ const App: React.FC = () => {
         return (
           <Viewer360
             imageUrl={IMG_INTERACTIVE}
-            title="Venta Interactiva"
-            description="Experiencia de ventas completa dentro de la vista 360. El usuario puede ver precios y estado."
-            features={['Tarjetas Informativas', 'Estado Vendido/Libre', 'Precios', 'Call to Action']}
+            title="Tu Lote Ideal"
+            description="Explora las opciones disponibles en nuestro masterplan ecológico y encuentra tu espacio."
+            features={['Disponibilidad', 'Precios Transparentes', 'Metraje', 'Reserva']}
             onBack={() => setCurrentView(ViewType.LANDING)}
           >
             <InteractiveScene />
@@ -59,9 +58,9 @@ const App: React.FC = () => {
         return (
           <Viewer360
             imageUrl={IMG_STAGING}
-            title="Construcción Virtual"
-            description="Ayuda al cliente a visualizar el potencial proyectando modelos arquitectónicos 3D sobre el terreno vacío."
-            features={['Modelo 3D Holográfico', 'Switch On/Off', 'Volumetría', 'Contexto de Escala']}
+            title="Sueña tu Hogar"
+            description="Visualiza la armonía de una construcción moderna integrada en este paisaje."
+            features={['Proyección Arquitectónica', 'Volumetría', 'Escala Real', 'Integración']}
             onBack={() => setCurrentView(ViewType.LANDING)}
           >
             <VirtualStagingScene />
@@ -73,108 +72,108 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="w-full h-screen bg-gray-900">
+    <div className="w-full h-screen bg-[#F5F5F4]">
       {renderView()}
     </div>
   );
 };
 
-// Sub-component for the landing page selection
+// Sub-component for the landing page selection (Eco-Modern Style)
 const LandingPage = ({ onSelect }: { onSelect: (view: ViewType) => void }) => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white flex flex-col items-center justify-center p-6">
+    <div className="min-h-screen bg-[#F5F5F4] text-stone-800 flex flex-col items-center justify-center p-6 font-sans">
       <div className="max-w-6xl w-full">
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center justify-center p-3 bg-blue-600 rounded-full mb-4 shadow-lg shadow-blue-500/30">
-             <Icon360 className="w-8 h-8" />
+        
+        {/* Header */}
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center justify-center p-4 bg-white rounded-3xl mb-6 shadow-xl shadow-stone-200/50">
+             <Icon360 className="w-10 h-10 text-green-700" />
           </div>
-          <h1 className="text-4xl md:text-6xl font-bold mb-4 tracking-tight">
-            Terra<span className="text-blue-500">Vision</span> 360
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight text-stone-900">
+            Terra<span className="text-green-700">Vision</span>
           </h1>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Plataforma de demostración para visualización inmobiliaria inmersiva. 
-            Selecciona una experiencia técnica para explorar sus capacidades.
+          <p className="text-stone-500 text-xl max-w-2xl mx-auto leading-relaxed font-medium">
+            Experiencia inmersiva para espacios vivos. <br/>
+            Conecta con la naturaleza de tu próxima inversión.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-          {/* Card 1 */}
+        {/* Grid Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          
+          {/* Card 1: Technical -> Boundaries */}
           <div 
             onClick={() => onSelect(ViewType.BOUNDARIES)}
-            className="group bg-gray-800/50 border border-gray-700 hover:border-yellow-500/50 rounded-2xl p-6 cursor-pointer transition-all duration-300 hover:bg-gray-800 hover:shadow-2xl hover:-translate-y-2"
+            className="group bg-white rounded-[2rem] p-8 cursor-pointer transition-all duration-500 hover:shadow-2xl hover:shadow-stone-200 hover:-translate-y-2 border border-transparent hover:border-amber-100"
           >
-            <div className="flex items-start justify-between mb-4">
-              <div className="bg-yellow-500/20 w-12 h-12 rounded-lg flex items-center justify-center group-hover:bg-yellow-500 transition-colors">
-                <IconRuler className="text-yellow-500 group-hover:text-white" />
+            <div className="flex items-start justify-between mb-6">
+              <div className="bg-amber-50 w-14 h-14 rounded-2xl flex items-center justify-center group-hover:bg-amber-500 transition-all duration-300">
+                <IconRuler className="w-6 h-6 text-amber-600 group-hover:text-white" />
               </div>
-              <span className="text-xs font-mono text-gray-500 border border-gray-700 rounded px-2 py-1">TÉCNICO</span>
+              <span className="text-xs font-bold tracking-wider text-amber-700 bg-amber-50 px-4 py-2 rounded-full">TÉCNICO</span>
             </div>
-            <h3 className="text-xl font-bold mb-2 group-hover:text-yellow-400 transition-colors">Límites y Medidas</h3>
-            <p className="text-gray-400 text-sm leading-relaxed">
-              Dibuja líneas vectoriales 3D sobre el terreno para mostrar exactamente qué está comprando el cliente. Incluye estacas virtuales y etiquetas de metros cuadrados.
+            <h3 className="text-2xl font-bold mb-3 text-stone-800 group-hover:text-amber-700 transition-colors">Límites y Medidas</h3>
+            <p className="text-stone-500 leading-relaxed">
+              Visualización precisa del perímetro. Entiende el espacio real y sus dimensiones en armonía con la topografía.
             </p>
           </div>
 
-          {/* Card 2 */}
+          {/* Card 2: Location -> Proximity */}
           <div 
             onClick={() => onSelect(ViewType.PROXIMITY)}
-            className="group bg-gray-800/50 border border-gray-700 hover:border-blue-500/50 rounded-2xl p-6 cursor-pointer transition-all duration-300 hover:bg-gray-800 hover:shadow-2xl hover:-translate-y-2"
+            className="group bg-white rounded-[2rem] p-8 cursor-pointer transition-all duration-500 hover:shadow-2xl hover:shadow-stone-200 hover:-translate-y-2 border border-transparent hover:border-sky-100"
           >
-            <div className="flex items-start justify-between mb-4">
-              <div className="bg-blue-500/20 w-12 h-12 rounded-lg flex items-center justify-center group-hover:bg-blue-500 transition-colors">
-                <IconMapPin className="text-blue-500 group-hover:text-white" />
+            <div className="flex items-start justify-between mb-6">
+              <div className="bg-sky-50 w-14 h-14 rounded-2xl flex items-center justify-center group-hover:bg-sky-500 transition-all duration-300">
+                <IconMapPin className="w-6 h-6 text-sky-600 group-hover:text-white" />
               </div>
-              <span className="text-xs font-mono text-gray-500 border border-gray-700 rounded px-2 py-1">UBICACIÓN</span>
+              <span className="text-xs font-bold tracking-wider text-sky-700 bg-sky-50 px-4 py-2 rounded-full">ENTORNO</span>
             </div>
-            <h3 className="text-xl font-bold mb-2 group-hover:text-blue-400 transition-colors">Contexto y Cercanía</h3>
-            <p className="text-gray-400 text-sm leading-relaxed">
-              Indica dónde están la playa, el centro o las escuelas. Usa marcadores flotantes que siempre miran al usuario para resaltar la plusvalía de la ubicación.
+            <h3 className="text-2xl font-bold mb-3 text-stone-800 group-hover:text-sky-700 transition-colors">Puntos de Interés</h3>
+            <p className="text-stone-500 leading-relaxed">
+              Descubre la cercanía a playas, bosques y servicios. La ubicación perfecta para un estilo de vida conectado.
             </p>
           </div>
 
-          {/* Card 3 */}
+          {/* Card 3: Sales -> Interactive */}
           <div 
             onClick={() => onSelect(ViewType.INTERACTIVE)}
-            className="group bg-gray-800/50 border border-gray-700 hover:border-green-500/50 rounded-2xl p-6 cursor-pointer transition-all duration-300 hover:bg-gray-800 hover:shadow-2xl hover:-translate-y-2"
+            className="group bg-white rounded-[2rem] p-8 cursor-pointer transition-all duration-500 hover:shadow-2xl hover:shadow-stone-200 hover:-translate-y-2 border border-transparent hover:border-green-100"
           >
-            <div className="flex items-start justify-between mb-4">
-              <div className="bg-green-500/20 w-12 h-12 rounded-lg flex items-center justify-center group-hover:bg-green-500 transition-colors">
-                <IconInfo className="text-green-500 group-hover:text-white" />
+            <div className="flex items-start justify-between mb-6">
+              <div className="bg-green-50 w-14 h-14 rounded-2xl flex items-center justify-center group-hover:bg-green-600 transition-all duration-300">
+                <IconInfo className="w-6 h-6 text-green-600 group-hover:text-white" />
               </div>
-              <span className="text-xs font-mono text-gray-500 border border-gray-700 rounded px-2 py-1">VENTAS</span>
+              <span className="text-xs font-bold tracking-wider text-green-700 bg-green-50 px-4 py-2 rounded-full">DISPONIBILIDAD</span>
             </div>
-            <h3 className="text-xl font-bold mb-2 group-hover:text-green-400 transition-colors">Masterplan Interactivo</h3>
-            <p className="text-gray-400 text-sm leading-relaxed">
-              Convierte la visita en una venta. Muestra múltiples lotes, su estado (vendido/disponible), precio y permite abrir fichas de información sin salir del 360.
+            <h3 className="text-2xl font-bold mb-3 text-stone-800 group-hover:text-green-700 transition-colors">Masterplan Vivo</h3>
+            <p className="text-stone-500 leading-relaxed">
+              Navega entre lotes disponibles. Información transparente de precios y estados en tiempo real.
             </p>
           </div>
 
-          {/* Card 4 (New) */}
+          {/* Card 4: Arch -> Virtual Staging */}
           <div 
             onClick={() => onSelect(ViewType.VIRTUAL_STAGING)}
-            className="group bg-gray-800/50 border border-gray-700 hover:border-purple-500/50 rounded-2xl p-6 cursor-pointer transition-all duration-300 hover:bg-gray-800 hover:shadow-2xl hover:-translate-y-2"
+            className="group bg-white rounded-[2rem] p-8 cursor-pointer transition-all duration-500 hover:shadow-2xl hover:shadow-stone-200 hover:-translate-y-2 border border-transparent hover:border-stone-200"
           >
-             <div className="flex items-start justify-between mb-4">
-              <div className="bg-purple-500/20 w-12 h-12 rounded-lg flex items-center justify-center group-hover:bg-purple-500 transition-colors">
-                <IconHome className="text-purple-500 group-hover:text-white" />
+             <div className="flex items-start justify-between mb-6">
+              <div className="bg-stone-100 w-14 h-14 rounded-2xl flex items-center justify-center group-hover:bg-stone-600 transition-all duration-300">
+                <IconHome className="w-6 h-6 text-stone-600 group-hover:text-white" />
               </div>
-              <span className="text-xs font-mono text-gray-500 border border-gray-700 rounded px-2 py-1">ARQUITECTURA</span>
+              <span className="text-xs font-bold tracking-wider text-stone-600 bg-stone-100 px-4 py-2 rounded-full">PROYECCIÓN</span>
             </div>
-            <h3 className="text-xl font-bold mb-2 group-hover:text-purple-400 transition-colors">Construcción Virtual</h3>
-            <p className="text-gray-400 text-sm leading-relaxed">
-              Proyecta modelos 3D "fantasmas" sobre terrenos baldíos. Permite al cliente visualizar la volumetría de su futura casa con un solo clic.
+            <h3 className="text-2xl font-bold mb-3 text-stone-800 group-hover:text-stone-600 transition-colors">Construcción Virtual</h3>
+            <p className="text-stone-500 leading-relaxed">
+              Imagina el futuro. Proyecta modelos arquitectónicos sobre el terreno para visualizar el potencial de tu inversión.
             </p>
           </div>
 
         </div>
 
-        <div className="mt-16 text-center border-t border-gray-800 pt-8 flex flex-col items-center">
-           <p className="text-gray-600 text-xs uppercase tracking-widest mb-2">Desarrollado con tecnología WebGL</p>
-           <div className="flex gap-2">
-              <div className="w-2 h-2 rounded-full bg-gray-700"></div>
-              <div className="w-2 h-2 rounded-full bg-gray-700"></div>
-              <div className="w-2 h-2 rounded-full bg-gray-700"></div>
-           </div>
+        <div className="mt-20 text-center flex flex-col items-center">
+           <p className="text-stone-400 text-sm font-medium tracking-widest mb-4">POWERED BY WEBGL</p>
+           <div className="w-16 h-1 bg-gradient-to-r from-transparent via-stone-300 to-transparent rounded-full"></div>
         </div>
       </div>
     </div>

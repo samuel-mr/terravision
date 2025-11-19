@@ -16,58 +16,59 @@ export const InteractiveScene: React.FC = () => {
     <group>
       {lots.map((lot) => (
         <group key={lot.id} position={lot.position}>
-          {/* Floating Info Card */}
+          
+          {/* Info Card - Eco Style */}
           <Html position={[0, 2, 0]} center zIndexRange={[100, 0]}>
             <div 
               className={`
-                transition-all duration-300 cursor-pointer
+                transition-all duration-500 cursor-pointer
                 ${selectedLot === lot.id ? 'scale-110 z-50' : 'scale-100 hover:scale-105'}
               `}
               onClick={() => setSelectedLot(selectedLot === lot.id ? null : lot.id)}
             >
               <div className={`
-                rounded-xl shadow-2xl overflow-hidden w-48 border-2
-                ${lot.status === 'sold' ? 'bg-gray-100 border-gray-400 opacity-80' : 'bg-white border-green-500'}
+                rounded-[1.5rem] shadow-2xl overflow-hidden w-52 border border-stone-100
+                ${lot.status === 'sold' ? 'bg-stone-100 opacity-90 grayscale' : 'bg-white'}
               `}>
                 <div className={`
-                  py-2 px-3 text-center font-bold text-white text-sm uppercase
-                  ${lot.status === 'sold' ? 'bg-gray-500' : 'bg-green-600'}
+                  py-2 px-4 text-center font-bold text-white text-xs uppercase tracking-widest
+                  ${lot.status === 'sold' ? 'bg-stone-400' : 'bg-green-700'}
                 `}>
-                  {lot.status === 'sold' ? 'Vendido' : 'Disponible'}
+                  {lot.status === 'sold' ? 'No Disponible' : 'Disponible'}
                 </div>
                 
-                <div className="p-3 text-center">
-                   <h3 className="text-lg font-bold text-gray-800">{lot.id}</h3>
-                   <p className="text-gray-500 text-xs mb-2">{lot.size}</p>
+                <div className="p-5 text-center">
+                   <h3 className="text-2xl font-bold text-stone-800 mb-1">{lot.id}</h3>
+                   <p className="text-stone-400 text-sm font-medium mb-4">{lot.size}</p>
                    
                    {lot.status !== 'sold' && (
-                     <div className="text-green-700 font-bold text-lg border-t border-gray-100 pt-2">
+                     <div className="text-green-700 font-bold text-xl border-t border-stone-100 pt-3">
                        {lot.price}
                      </div>
                    )}
                    
                    {selectedLot === lot.id && lot.status !== 'sold' && (
-                     <button className="mt-2 w-full bg-green-600 text-white text-xs py-1.5 rounded hover:bg-green-700 transition-colors">
-                       Cotizar Ahora
+                     <button className="mt-4 w-full bg-stone-800 text-white text-xs font-bold py-2 rounded-full hover:bg-stone-700 transition-colors">
+                       INICIAR COMPRA
                      </button>
                    )}
                 </div>
               </div>
               
               {/* Connection line */}
-              <div className="w-0.5 h-8 bg-white/50 mx-auto"></div>
+              <div className="w-px h-12 bg-white/80 mx-auto"></div>
               <div className="w-3 h-3 bg-white rounded-full mx-auto shadow-lg"></div>
             </div>
           </Html>
           
           {/* Ground marker */}
           <mesh rotation={[-Math.PI / 2, 0, 0]}>
-            <ringGeometry args={[1, 1.2, 32]} />
-            <meshBasicMaterial color={lot.status === 'sold' ? 'gray' : '#22c55e'} />
+            <ringGeometry args={[1, 1.1, 32]} />
+            <meshBasicMaterial color={lot.status === 'sold' ? '#a8a29e' : '#15803d'} />
           </mesh>
           <mesh rotation={[-Math.PI / 2, 0, 0]}>
             <circleGeometry args={[1, 32]} />
-            <meshBasicMaterial color={lot.status === 'sold' ? 'gray' : '#22c55e'} opacity={0.2} transparent />
+            <meshBasicMaterial color={lot.status === 'sold' ? '#a8a29e' : '#15803d'} opacity={0.2} transparent />
           </mesh>
         </group>
       ))}
